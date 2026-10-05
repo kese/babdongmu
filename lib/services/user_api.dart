@@ -57,7 +57,7 @@ class UserApi {
       }
 
       // 마스터 계정인 경우
-      if (DummyUserStore.currentUserEmail == 'portfolio-owner@example.invalid') {
+      if (DummyUserStore.currentUserEmail == 'demo-owner@example.invalid') {
         if (name != null) DummyUserStore.masterUserProfile['name'] = name;
         if (phone != null) DummyUserStore.masterUserProfile['phone'] = phone;
         if (email != null) DummyUserStore.masterUserProfile['email'] = email;
@@ -144,7 +144,7 @@ class UserApi {
       }
 
       // 마스터 계정인 경우
-      if (DummyUserStore.currentUserEmail == 'portfolio-owner@example.invalid') {
+      if (DummyUserStore.currentUserEmail == 'demo-owner@example.invalid') {
         logDebug('[UserApi] Mock points loaded');
         return {
           'success': true,
@@ -185,7 +185,7 @@ class UserApi {
       }
 
       // 마스터 계정인 경우
-      if (DummyUserStore.currentUserEmail == 'portfolio-owner@example.invalid') {
+      if (DummyUserStore.currentUserEmail == 'demo-owner@example.invalid') {
         DummyUserStore.masterUserPoints += amount;
         logDebug('[UserApi] Mock points charged');
         return {
@@ -240,7 +240,7 @@ class UserApi {
       }
 
       // 마스터 계정인 경우
-      if (DummyUserStore.currentUserEmail == 'portfolio-owner@example.invalid') {
+      if (DummyUserStore.currentUserEmail == 'demo-owner@example.invalid') {
         if (DummyUserStore.masterUserPoints < amount) {
           return {'success': false, 'message': '포인트가 부족합니다'};
         }
@@ -327,7 +327,7 @@ class UserApi {
       }
 
       // 마스터 계정인 경우
-      if (DummyUserStore.currentUserEmail == 'portfolio-owner@example.invalid') {
+      if (DummyUserStore.currentUserEmail == 'demo-owner@example.invalid') {
         DummyUserStore.masterUserProfile['profile_image'] = imagePath;
         logDebug('[UserApi] Mock profile image updated');
         return {

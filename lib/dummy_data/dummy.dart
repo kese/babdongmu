@@ -151,7 +151,7 @@ class DummyUserStore {
 
   static final Map<String, dynamic> masterUserProfile = {
     'name': '개발자',
-    'email': 'portfolio-owner@example.invalid',
+    'email': 'demo-owner@example.invalid',
     'phone': '000-0000-0000',
     'nickname': '개발자',
     'address': '예시 지역',
@@ -161,7 +161,7 @@ class DummyUserStore {
 
   static final Map<String, dynamic> responderUserProfile = {
     'name': '요청 응답자',
-    'email': 'portfolio-responder@example.invalid',
+    'email': 'demo-responder@example.invalid',
     'phone': '000-0000-0000',
     'nickname': '응답자',
     'address': '예시 지역',
@@ -185,11 +185,11 @@ class DummyUserStore {
       List<Map<String, String>> tempUsers) {
     if (currentUserEmail == null) return null;
 
-    if (currentUserEmail == 'portfolio-owner@example.invalid') {
+    if (currentUserEmail == 'demo-owner@example.invalid') {
       return masterUserProfile;
     }
 
-    if (currentUserEmail == 'portfolio-responder@example.invalid') {
+    if (currentUserEmail == 'demo-responder@example.invalid') {
       return responderUserProfile;
     }
 
