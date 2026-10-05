@@ -1,37 +1,54 @@
-# 밥동무 캡스톤디자인 프로젝트
+# 밥동무 | 캡스톤디자인 프로젝트
 
-밥동무는 주변 사람들과 배달을 함께 주문하거나 식사 모임을 만들기 위한 Flutter 캡스톤디자인 프로젝트입니다. 지도, 모집 게시글, 채팅, 합동 주문 흐름을 구현한 내부 테스트용 앱 프로토타입입니다.
+**밥동무**는 캠퍼스 구성원이 배달 주문을 함께 묶어 배달비를 나누고, 식사 모임을 만들 수 있도록 설계한 모바일 앱입니다. 캡스톤디자인 과제로 개발해 내부 테스트에 사용한 프로토타입이며, 대외 서비스로 출시하거나 운영한 적은 없습니다.
+
+![밥동무 앱의 게시글 목록과 알림 화면](docs/images/capstone-main-screen.png)
+
+## 해결하려는 문제
+
+혼자 주문할 때 부담되는 배달비와 식사 인원 모집의 번거로움을 줄이는 것이 목표입니다. 사용자가 주변의 배달 모집이나 식사 모임을 확인하고, 참여자들과 주문·대화·정산까지 이어가도록 한 흐름으로 구성했습니다.
+
+## 주요 기능
+
+- 배달 공동 주문 및 식사 모임 게시글 작성, 목록, 상세 보기, 참여
+- 지도에서 주변 게시글과 장소를 확인하고 대략적인 수령 지점을 선택
+- 매장·장소·배달비 기준 합동 주문 매칭, 수락·거절 및 만료 처리
+- 주문별 채팅방과 실시간 메시지
+- 공용 장바구니, 주문 영수증, 포인트 정산 요청
+- 로그인, 프로필 관리, 앱 알림과 선택적 푸시 알림
+
+## 기술 스택
+
+| 영역 | 기술 | 사용 방식 |
+|---|---|---|
+| 모바일 앱 | Flutter, Dart, Material | 화면, 폼, 상태 흐름, Android 앱 구성 |
+| 서버 API | Spring Boot 3, Java 21 | 인증, 게시글, 매칭, 채팅방·장바구니 API |
+| 인증·보안 | Spring Security, JWT | 로그인 토큰 발급과 보호된 API/WebSocket 메시지 처리 |
+| 데이터 | Spring Data JPA, MariaDB | 사용자, 게시글, 참여, 채팅 및 정산 도메인 저장 |
+| 실시간 통신 | STOMP, WebSocket | 채팅방 구독과 실시간 메시지 전달 |
+| 위치·지도 | Google Maps Flutter, Geolocator | 지도 표시, 현재 위치와 수령 지점 선택 |
+| 알림 | Firebase Cloud Messaging | 선택적 푸시 알림; 기본 설정에서는 비활성화 |
+
+## 기술을 적용한 방식
+
+- Flutter 화면은 API별 서비스 계층으로 분리했습니다. `AuthApi`, `PostApi`, `ChatApi`, `JointOrderApi`, `SharedCartApi`가 REST 요청과 화면 모델 변환을 담당합니다.
+- 서버는 게시글·주문·채팅 도메인을 Spring Boot와 JPA로 구성하고, 로그인에는 JWT를 사용합니다. STOMP 채널 인터셉터에서도 토큰을 확인합니다.
+- 합동 주문은 매장과 대략적인 장소를 기준으로 후보를 찾고, 참여자의 응답 상태와 만료 시간을 관리한 뒤 공동 채팅방으로 연결합니다.
+- 지도 기반 배달 게시글에는 상세 주소를 저장·응답하지 않고 장소 라벨과 소수점 셋째 자리까지의 대략적인 좌표만 사용합니다.
+- 테스트용 더미 데이터는 `--dart-define=APP_USE_MOCK_DATA=true`로 선택합니다. 세션 토큰·사용자 ID·프로필 정보와 푸시 토큰은 앱 실행 중 메모리에만 보관합니다.
+
+## 실행 및 설정
+
+프로젝트는 폐기되어 연결 가능한 서버가 없습니다. 앱의 기본 API/WebSocket 주소는 예약된 `example.invalid` 도메인을 사용하므로 외부 서비스에 연결되지 않습니다.
+
+```sh
+flutter run --dart-define=APP_USE_MOCK_DATA=true
+```
+
+서버를 별도로 실행하려면 `server` 브랜치에서 Java 21과 격리된 데이터베이스를 준비하고 `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET` 환경 변수를 설정해야 합니다. 서버는 기본적으로 `127.0.0.1:8080`에만 바인딩됩니다.
+
+Firebase는 `APP_ENABLE_FIREBASE=true`와 로컬 `google-services.json`이 있을 때만 사용합니다. Android 지도 키는 패키지명과 서명 인증서로 제한한 뒤, Git에서 무시되는 `android/local.properties`에 `MAPS_API_KEY`로 설정하세요. 서비스 키·계정·실사용 데이터는 저장소에 포함하지 마세요.
 
 ## 프로젝트 상태
 
-- 내부 테스트용 프로토타입으로만 사용했으며, 대외 공개 서비스로 출시하거나 운영한 적이 없습니다.
-- 프로젝트는 폐기되었으며 연결 가능한 서버는 운영되지 않습니다.
-- 기본 API와 채팅 주소는 예약된 `example.invalid` 도메인이라 기본 설정으로 외부 서비스에 연결되지 않습니다.
-- `server` 브랜치에는 별도 Spring Boot 백엔드 구현이 있습니다. 실행 시 데이터베이스와 JWT 비밀값을 환경 변수로 직접 설정해야 합니다.
-
-## 실행 설정
-
-Flutter 앱의 로컬 빌드에서 필요한 값만 명시적으로 전달합니다.
-
-```text
-API_BASE_URL=https://your-development-api.example
-CHAT_WEBSOCKET_URL=wss://your-development-api.example/ws/websocket
-APP_USE_MOCK_DATA=true|false
-APP_ENABLE_FIREBASE=true|false
-```
-
-실제 서비스용 주소나 키, 계정, 데이터는 저장소에 포함하지 마세요. Firebase는 기본 비활성화되어 있으며, 사용하려면 `APP_ENABLE_FIREBASE=true`와 로컬 `google-services.json` 설정이 필요합니다. Firebase 설정 파일은 저장소에 포함하지 마세요.
-
-Android 네이티브 지도 키는 무제한 키를 넣지 말고 앱 서명과 패키지명으로 제한한 뒤, 무시 처리된 `android/local.properties`에 `MAPS_API_KEY=...`로 설정하세요.
-
-## 개인정보 처리 참고
-
-- 배달 장소 입력에는 상세 주소와 동·호수를 받지 않으며, 게시글에는 장소명과 대략적인 좌표만 사용합니다.
-- 인증 토큰, 사용자 ID, 프로필 이름, 푸시 토큰은 앱 프로세스 메모리에만 유지되므로 앱을 다시 열면 재로그인이 필요합니다.
-- `integration_test`의 원격 호출은 기본 비활성화되어 있습니다. 격리된 테스트 서버와 일회용 계정을 준비한 뒤 `ENABLE_REMOTE_INTEGRATION_TESTS`, `INTEGRATION_TEST_PASSWORD` 빌드 값을 명시해야 합니다.
-
-## 기술 구성
-
-- Flutter / Dart 모바일 클라이언트
-- Spring Boot 백엔드 (`server` 브랜치)
-- 지도, 실시간 채팅, 푸시 알림 연동을 실험한 내부 프로토타입
+이 저장소는 캡스톤디자인 결과물의 소스와 내부 테스트용 샘플을 정리한 공개 자료입니다. 현재 운영 중인 서비스나 서버는 없습니다. 원격 통합 테스트는 기본 비활성화되어 있으며, 실행할 경우 폐기 가능한 테스트 서버와 계정만 사용하세요.
