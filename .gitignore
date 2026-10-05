@@ -1,0 +1,168 @@
+# ==========================
+# OS / System Files
+# ==========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.svn/
+
+# ==========================
+# IDE: VS Code
+# (공유할 설정 파일은 !로 예외 처리)
+# ==========================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+# ==========================
+# IDE: JetBrains / IntelliJ / Android Studio
+# ==========================
+.idea/
+*.iml
+*.iws
+*.ipr
+.atom/
+migrate_working_dir/
+
+# ==========================
+# Java / Gradle
+# ==========================
+# 컴파일된 파일
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# 빌드 폴더
+/build/
+/out/
+/target/
+/bin/
+.build/
+.buildlog/
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# 기타 IDE
+.classpath
+.project
+.settings/
+
+# ==========================
+# Dart & Flutter
+# ==========================
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-credentials
+.flutter-versions
+.flutter_build_log
+
+# Build outputs
+/build/
+**/build/
+**/outputs/
+**/intermediates/
+coverage/
+delivery/build/
+
+# Android / Flutter binary artifacts
+*.apk
+*.aab
+*.so
+
+# 안드로이드 관련
+/android/local.properties
+/android/.gradle/
+/android/.idea/
+/android/app/*.keystore
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+android/app/build/
+android/.cxx/
+
+# iOS 관련
+/ios/Pods/
+/ios/.symlinks/
+/ios/Flutter/
+/ios/Flutter/.last_build_id
+/ios/local.properties
+ios/build/
+
+# macOS 관련
+*.app
+.swiftpm/
+
+# 기타
+**/doc/api/
+app.*.symbols
+app.*.map.json
+**/generated_plugin_registrant.dart
+**/GeneratedPluginRegistrant.java
+
+# ==========================
+# Logs & Sensitive Files
+# (절대 Git에 올리면 안 되는 파일들)
+# ==========================
+*.log
+hs_err_pid*
+replay_pid*
+
+# 인증서
+*.jks
+*.keystore
+
+# 민감 정보
+.env
+.env.*
+secrets.properties
+credentials.json
+GoogleService-Info.plist
+google-services.json
+firebase-adminsdk*.json
+service-account*.json
+key.properties
+*.pem
+*.p12
+*.pfx
+*.p8
+*.mobileprovision
+*.provisionprofile
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.bak
+nohup.out
+app.out.log
+
+# Eclipse 및 기타 워크스페이스 메타데이터
+.metadata/
+*.snap
+*.markers
+*.index
+*.dat
+*.log
+*.class
+externalLibsTimeStamps
+savedIndexNames.txt
+variablesAndContainers.dat
+
+# Eclipse 프로젝트 설정은 필요 시 추적
+!.project
+!.classpath
+!.settings/

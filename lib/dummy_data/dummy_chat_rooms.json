@@ -1,0 +1,27 @@
+
+[
+  {
+    "id": 1,
+    "userName": "치킨 같이 드실 분",
+    "lastMessage": "네, 좋아요! 몇 시에 주문할까요?",
+    "lastMessageTime": "오후 2:30",
+    "unreadCount": 2,
+    "userProfileImage": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 2,
+    "userName": "피자 파티원 모집",
+    "lastMessage": "피자 거의 다 왔대요!",
+    "lastMessageTime": "오후 2:25",
+    "unreadCount": 0,
+    "userProfileImage": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 3,
+    "userName": "떡볶이 순대 조합",
+    "lastMessage": "사진 좀 보내주세요",
+    "lastMessageTime": "오전 11:11",
+    "unreadCount": 1,
+    "userProfileImage": "https://via.placeholder.com/150"
+  }
+]

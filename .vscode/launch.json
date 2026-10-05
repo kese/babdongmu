@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "CapstoneApp (Flutter Pixel 3)",
+            "program": "lib/main.dart",
+            "deviceId": "emulator-5554",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=FLUTTER_LOG_LEVEL=info"
+            ]
+        },
+        {
+            "name": "CapstoneApp (Flutter Clean Logs)",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define=FLUTTER_LOG_LEVEL=warning"
+            ]
+        },
+        {
+            "name": "CapstoneApp (Flutter profile mode)",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        }
+    ]
+}
